@@ -8,3 +8,4 @@ tokenizers
 langchain-community
 pypdf
 bs4
+chromadb

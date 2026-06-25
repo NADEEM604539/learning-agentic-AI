@@ -2,26 +2,19 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
 from langchain_community.document_loaders import PyPDFLoader , DirectoryLoader
 from langchain_experimental.text_splitter import SemanticChunker
 
-# text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=20)
-pdfs = PyPDFLoader('Nadeem-Mushtaq_Resume.pdf')
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=20)
+pdf_load = PyPDFLoader('Nadeem-Mushtaq_Resume.pdf')
 # pdfs = DirectoryLoader(
 #     "",
 #     glob="**/*.pdf",
 #     loader_cls=PyPDFLoader
 # )
 
-docs = pdfs.lazy_load()
+# docs = pdfs.lazy_load()
 
-# text = text_splitter.split_documents(docs)
+text = text_splitter.split_documents(pdf_load)
 
-text = RecursiveCharacterTextSplitter.from_language(
-    language= Language.PYTHON,
-    chunk_size=100,
-    chunk_overlap=10
-)
-
-docs = text.split_documents(docs)
-print(docs)
+# print(text)
 
 
 
