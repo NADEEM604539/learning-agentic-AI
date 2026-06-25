@@ -1,0 +1,10 @@
+langchain-huggingface
+langchain-core
+huggingface-hub
+sentence_transformers
+transformers
+torch
+tokenizers
+langchain-community
+pypdf
+bs4

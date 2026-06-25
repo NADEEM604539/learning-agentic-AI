@@ -1,0 +1,5 @@
+{
+    "editor.quickSuggestionsDelay": 0,
+    "editor.suggest.snippetsPreventQuickSuggestions": true,
+    "task.quickOpen.showAll": true
+}
