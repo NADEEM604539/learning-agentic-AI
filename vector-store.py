@@ -2,8 +2,8 @@ from langchain_chroma import Chroma
 import os 
 os.environ["HF_HOME"] = "E:\\huggingface_embedding_cache"
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_text_splitters import RecursiveCharacterTextSplitter, Language 
-from langchain_community.document_loaders import PyPDFLoader , DirectoryLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import PyPDFLoader
 from langchain_experimental.text_splitter import SemanticChunker
 
 embeddings = HuggingFaceEmbeddings(
@@ -11,32 +11,27 @@ embeddings = HuggingFaceEmbeddings(
     encode_kwargs={"normalize_embeddings": True},
 )
 
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=20)
-pdf_load = PyPDFLoader('Nadeem-Mushtaq_Resume.pdf')
-# pdfs = DirectoryLoader(
-#     "",
-#     glob="**/*.pdf",
-#     loader_cls=PyPDFLoader
-# )
+# text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
+# pdf_load = PyPDFLoader('Nadeem-Mushtaq_Resume.pdf')
 
-docs = pdf_load.load()
+# docs = pdf_load.load()
 
-text = text_splitter.split_documents(docs)
+# text = text_splitter.split_documents(docs)
 
+persist_directory = './vector_store'
 
-# vectorStore= Chroma.from_documents(
+# vectorStore = Chroma.from_documents(
 #     documents=text,
 #     embedding=embeddings,
 #     collection_name="my_docs",
-#     persist_directory='./verctor_store'
+#     persist_directory=persist_directory,
 # )
-
 
 vectorStore = Chroma(
     collection_name="my_docs",
     embedding_function=embeddings,
-    persist_directory="./verctor_store",
+    persist_directory=persist_directory,
 )
 
-results= vectorStore.similarity_search('list out skills of that person and what is his name and details', k=2)
+results= vectorStore.similarity_search('tell me tools and platforms', k=1)
 print(results)

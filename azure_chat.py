@@ -11,7 +11,7 @@ from langchain_core.runnables import RunnableSequence , RunnableParallel, Runnab
 llm = ChatOpenAI(
     model="gpt-4.1-mini",  # Your Azure deployment name
     base_url="https://openai-rg-nadeem.openai.azure.com/openai/v1",
-    api_key=os.getenv("AZURE_OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
+    api_key=os.getenv("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
 )
 
 class Achobj(BaseModel):
