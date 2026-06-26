@@ -37,4 +37,11 @@ tools=[
     multiply
 ]
 
+class toolkit:
+    def get_tools(self):
+        return[
+            div,
+            multiply
+        ]
+
 print(tools[0].invoke({'a':5, 'b':5}))
