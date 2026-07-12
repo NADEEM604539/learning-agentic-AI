@@ -10,7 +10,6 @@ llm = ChatOpenAI(
 
     )
 
-
 class State(TypedDict):
     question: str
     answer: str
@@ -25,17 +24,17 @@ def chat_node(state: State) -> State:
    state['answer'] = answer
    return state
 
-def expl_node(state: State) -> State:
+def expl_node(state: State):
     prompt = f"This is the question: {state['question']} and this is the answer {state['answer']}... you have to explain this"
     result = llm.invoke(prompt)
     state['explanation']= result.content
-    return state
+    return {"explanation":state['explanation']}
 
-def sum_node(state: State) -> State:
+def sum_node(state: State):
     prompt = f"This is the question: {state['question']} and this is the answer {state['answer']}... you have to summarize this"
     result = llm.invoke(prompt)
     state['summary']= result.content
-    return state
+    return {"summary":state['summary']}
 
 
 graph = StateGraph(State)
@@ -52,6 +51,6 @@ graph.add_edge('expl_node', END)
 graph.add_edge('summary_node', END)
 
 workflow = graph.compile()
-print(workflow)
-result = workflow.invoke({'question': "whats your name", 'history':['hi','hello']})
+initial_state = {"question": "whats your name", "history":["hello", "hi"]}
+result = workflow.invoke(initial_state)
 print(result)

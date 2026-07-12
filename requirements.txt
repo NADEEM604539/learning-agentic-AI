@@ -9,3 +9,4 @@ langchain-community
 pypdf
 bs4
 chromadb
+langgraph
