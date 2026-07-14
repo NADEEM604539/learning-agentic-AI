@@ -74,6 +74,6 @@ while True:
 
 
 workflow.get_state({"configurable": {"thread_id": "nadeem"}})
-history = workflow.get_state_history({"configurable":{"thread_id": "nadeem"}})
-print( workflow.get_state_history({"configurable":{"thread_id": "nadeem"}}))
+history = list(workflow.get_state_history({"configurable":{"thread_id": "nadeem"}}))
+print(history)
 workflow.invoke(None, config =  {"configurable": {"thread_id": "nadeem"}})
