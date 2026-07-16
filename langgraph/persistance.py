@@ -4,12 +4,13 @@ from langchain_openai import ChatOpenAI
 import operator
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
 from langgraph.checkpoint.memory import MemorySaver
+import os 
 
 llm = ChatOpenAI(
     model="gpt-4.1-mini",  # Your Azure deployment name
     base_url="https://openai-rg-nadeem.openai.azure.com/openai/v1",
     #add your api key below
-    api_key=
+    api_key= os.getenv("api_key") or os.getenv("OPENAI_API_KEY")
 )
 
 class State(TypedDict):
